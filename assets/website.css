@@ -1,76 +1,58 @@
-.body{
-      background-image: linear-gradient(to right,black,#191919);
-      /* background-image: url(./images/mm_background_imagw-Qm5WZz4m-n-transformed.jpeg);
-      background-size: 100%;
-      top: 0%;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center; */
-    
+.body {
+  background-image: linear-gradient(to right, black, #191919);
 }
-.content{
-    position:absolute;
-    top: 15%;
-    left:20%;
-}           
 
-.lightlowerborder{
-    border-bottom: 5px solid transparent;
-    /* border-image: linear-gradient(179.4deg, rgb(67, 67, 67	) -16.9%, rgb(0,0,0) 1.9%) 10 ; */
-    border-color: #FB2576;
-    font-size: 2.5vw;
+.content {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+}
 
-}
-.lightupperborder{
-    border-top: 5px solid transparent;
-    border-image: linear-gradient(to right, #abdbed, #a490a6) 10 ;
-}
-.sidepanel{
-    width: 20%;
-    backdrop-filter: blur(10px);
-    background-image: linear-gradient(125deg,black,#2f2f2f);
-    border-radius: 5px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(43, 43, 43, 0.568);
-    
- 
-    
-}
-.footer{
-    width: 100%;
-    left: 15%;
-    height: 80px; 
-    text-align: center;
-    color: white;
-}
-.mainlogo{
-    
-    position:relative;
-    top:110px;
-    right:130px;
-    font-size: 8vw;
-    line-height: 8vw;
-    margin: 0;
-    font-family: 'Red Hat Display', sans-serif;
-    font-weight: 900;
-    background: url(https://www.shutterstock.com/image-vector/money-seamless-vector-pattern-word-260nw-63735253.jpg);
-    background-size: 40%;
-    background-position: 50% 50%;
-    -webkit-background-clip: text;
-    color: rgba(0,0,0,0.08);
-    animation: zoomout 6s ease 500 forwards ;
-    animation-iteration-count: 1;
 
-    
+.lightlowerborder {
+  border-bottom: 5px solid transparent;
+  border-color: #fb2576;
+  font-size: 2.5vw;
+}
+
+.lightupperborder {
+  border-top: 5px solid transparent;
+  border-image: linear-gradient(to right, #abdbed, #a490a6) 10;
+}
+
+.footer {
+  width: 100%;
+  left: 15%;
+  height: 80px;
+  text-align: center;
+  color: white;
+}
+
+.mainlogo {
+  position: relative;
+  top: 110px;
+  right: 130px;
+  font-size: 8vw;
+  line-height: 8vw;
+  margin: 0;
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: 900;
+  background: url(https://www.shutterstock.com/image-vector/money-seamless-vector-pattern-word-260nw-63735253.jpg);
+  background-size: 40%;
+  background-position: 50% 50%;
+  -webkit-background-clip: text;
+  color: rgba(0, 0, 0, 0.08);
+  animation: zoomout 6s ease 500 forwards;
+  animation-iteration-count: 1;
 }
 
 @keyframes zoomout {
-from {
+  from {
     background-size: 80%;
-}
-to {
+  }
+  to {
     background-size: 40%;
-}
+  }
 }
 
 .demo-2 {
@@ -79,139 +61,144 @@ to {
   font-weight: bold;
   font-family: monospace;
   letter-spacing: 7px;
-  
   text-transform: uppercase;
   padding-top: 20px;
-  background: linear-gradient(
-    to right,
-    hsl(0, 0%, 30%) 0,
-  
-    hsl(0, 0%, 30%) 100% 
-  );
+  background: linear-gradient(to right, hsl(0, 0%, 30%) 0, hsl(0, 0%, 30%) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.customheight{
-    font-size: 2.5vw;
-    padding-left:20px;
-      
-}
-.belowmm{
-    font-size: 2.5vw;
-    padding-top:110px;
-    padding-left: 80px;
-    
+
+.customheight {
+  font-size: 2.5vw;
+  padding-left: 20px;
 }
 
-.about{
-    position: relative;
-    top:4vw;
-    right:41vw; 
+.belowmm {
+  font-size: 2.5vw;
+  padding-top: 110px;
+  padding-left: 80px;
 }
-/* .aboutinfo{
-  display: flex;
-  flex-direction: column;
-  font-size:small;
-    position: absolute;
-    top :7.8vw;
-    left:6.5vw;
-    color:#fff;
-    font-family: 'Red Hat Display', sans-serif;
-    font-weight: bold;
 
-} */
-.aboutinfo2{
+.about {
+  position: relative;
+  top: 4vw;
+  right: 41vw;
+}
+
+.aboutinfo2 {
   display: flex;
   flex-direction: row;
-  font-size:medium;
+  font-size: 1vw;
   text-align: left;
   width: 70vw;
-
-    position: absolute;
-    top :3.5vw;
-    left:5vw;
-    color:#fff;
-    font-family: 'Red Hat Display', sans-serif;
-    font-weight: bold;
-
+  position: absolute;
+  top: 3.5vw;
+  left: 5vw;
+  color: #fff;
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: bold;
 }
+
 
 @keyframes showTopText {
-    0% { transform: translate3d(0, 100%, 0); }
-    40%, 60% { transform: translate3d(0, 50%, 0); }
-    100% { transform: translate3d(0, 0, 0); }
+  0% {
+    transform: translate3d(0, 100%, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(0, 50%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
 }
-@keyframes showBottomText {
-  0% { transform: translate3d(0, -100%, 0); }
-  100% { transform: translate3d(0, 0, 0); }
-}
-.animated-title {
-color: #Fff;
-font-weight: bolder;
-font-family: Roboto, Arial, sans-serif;
-height: 30vmin;
-left: 70%;
-position: absolute;
-transform: translate(-50%, -50%);
-width: 51vw;
 
+@keyframes showBottomText {
+  0% {
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
 }
+
+.animated-title {
+  color: #fff;
+  font-weight: bolder;
+  font-family: Roboto, Arial, sans-serif;
+  height: 30vmin;
+  left: 70%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 51vw;
+}
+
 .animated-title > div {
-height: 50%;
-overflow: hidden;
-position: absolute;
-width: 100%;
+  height: 50%;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
 }
+
 .animated-title > div div {
-font-size: 1.5vw;
-padding: 0.5vw 0;
-position: absolute;
+  font-size: 1.5vw;
+  padding: 0.5vw 0;
+  position: absolute;
 }
+
 .animated-title > div div span {
-display: block;
+  display: block;
 }
+
 .animated-title > div.text-top {
-border-bottom: 0.6vmin solid  #FB2576;
-top: 0;
+  border-bottom: 0.6vmin solid #FB2576;
+  top: 0;
 }
+
 .animated-title > div.text-top div {
-animation: showTopText 1s;
-animation-delay: 0.5s;
-animation-fill-mode: forwards;
-bottom: 0;
-transform: translate(0, 100%);
+  animation: showTopText 1s;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  bottom: 0;
+  transform: translate(0, 100%);
 }
+
 .animated-title > div.text-top div span:first-child {
-color: #fff;
+  color: #fff;
 }
+
 .animated-title > div.text-bottom {
-bottom: 0;
+  bottom: 0;
 }
+
 .animated-title > div.text-bottom div {
-animation: showBottomText 0.5s;
-animation-delay: 1.75s;
-animation-fill-mode: forwards;
-top: 0;
-transform: translate(0, -100%);
+  animation: showBottomText 0.5s;
+  animation-delay: 1.75s;
+  animation-fill-mode: forwards;
+  top: 0;
+  transform: translate(0, -100%);
 }
-.exclaimation{
-color: #FB2576;
-font-weight: bolder;
-font-family: Roboto, Arial, sans-serif;
+
+.exclaimation {
+  color: #FB2576;
+  font-weight: bolder;
+  font-family: Roboto, Arial, sans-serif;
 }
+
 @import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
 
 /* Global */
 
-.line-1{
-margin: 0 auto;
-border-right: 2px solid rgba(255,255,255,.75);
-font-size: 100%;
-text-align: center;
-white-space: nowrap;
-overflow: hidden;
-transform: translateY(-50%);    
+.line-1 {
+  margin: 0 auto;
+  border-right: 2px solid rgba(255, 255, 255, 0.75);
+  font-size: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  transform: translateY(-50%);
 }
+
 
 /* Animation */
 /* .anim-typewriter{
@@ -227,423 +214,695 @@ from{border-right-color: rgba(255,255,255,.75);}
 to{border-right-color: transparent;}
 } */
 
-
 .form__group {
-position: relative;
-padding: 15px 0 0;
-margin-top:5vw;
-margin-left:2vw ;
-width: 70%;
-}
-
-.form__field {
-font-family: inherit;
-width: 100%;
-border: 0;
-border-bottom: 2px solid #9b9b9b;
-outline: 0;
-font-size: 1.3vw;
-color: #fff;
-padding: 7px 0;
-background: transparent;
-transition: border-color 0.2s;
-
-&::placeholder {
-color: transparent;
-}
-
-&:placeholder-shown ~ .form__label {
-font-size: 1.3vw;
-cursor: text;
-top: 20px;
-}
-}
-
-.form__label {
-position: absolute;
-top: 0;
-display: block;
-transition: 0.2s;
-font-size: 1rem;
-color: #9b9b9b;
-pointer-events: none; /* Disable pointer events on the label */
-
-}
-
-.form__field:focus {
-~ .form__label {
-position: absolute;
-top: 0;
-display: block;
-transition: 0.2s;
-font-size: 1vw;
-color: #FB2576;
-font-weight:700;    
-}
-padding-bottom: 6px;  
-font-weight: 700;
-border-width: 3px;
-border-image: linear-gradient(to right,#FB2576,hsl(325, 96%, 59%));
-border-image-slice: 1;
-}
-/* reset input */ 
-.form__field{
-&:required,&:invalid { box-shadow:none; }
-}
-
-.button4{
-position: relative;
-top:4vw;
-left:2vw;
-height: 4vw;
-background: #232323;
-color: #fff;
-font-weight: 600;
-text-transform: uppercase;
-border: 2px solid #33352d;
-border-bottom:2.5px solid #FB2576;
-letter-spacing: 0.1rem;
-font-size: 0.4rem;
-padding: 2vw 5vw; 
-transition: 0.2s;
-@media (max-width:500px) {
-  font-size:0.32rem;
-}
-}
-.indicator2{
-  top: 8vw;
-}
-
-.button3 {
-
-position: relative;
-top:4vw;
-left:2vw;
-height: 3vw;
-background: #444;
-color: #fff;
-text-decoration: none;
-text-transform: uppercase;
-border: none;
-letter-spacing: 0.1rem;
-font-size: 0.4rem;
-padding: 1vw 3vw;
-transition: 0.2s;
-
-}
-
-.button3:hover {
-
-  letter-spacing: 0.2rem;
-  padding: 1.1rem 2.7rem;
-  background: var(--clr);
-  color: var(--clr);
-  box-shadow: 0 0 3.5vw var(--clr);
-  animation: box 3s infinite;
-  }
-  
-  .button3::before {
-  content: "";
-  height: 3vw;
-  position: absolute;
-  inset: 2px;
-  background: #272822;
-  }
-  
-  .button3 span {
   position: relative;
-  z-index: 1;
-  font-size: 1vw;
-  @media(max-width: 850px){
-  font-size:1/3vw
-  }
-  }
-  .button3 i {
-  position: absolute;
-  inset: 0;
-  display: block;
-  height: 3vw;
-  width: 12vw;
+  padding: 15px 0 0;
+  margin-top:2vw;
+  margin-left:3vw ;
+  width: 70%;
   }
   
-  .button3 i::before {
-  content: "";
-  position: absolute;
-  width: 0.8vw;
-  height: 0.2vw;
-  left: 80%;
-  top: -2px;
-  border: 2px solid var(--clr);
-  background: #272822;
-  transition: 0.2s;
+  .form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 1.3vw;
+  color: #fff;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+  
+  &::placeholder {
+  color: transparent;
   }
   
-  .button3:hover i::before {
-  width: 0.9vw;
-  left: 20%;
-  animation: move 3s infinite;
+  &:placeholder-shown ~ .form__label {
+  font-size: 1.3vw;
+  cursor: text;
+  top: 20px;
+  }
   }
   
-  .button3 i::after {
-  content: "";
-  position: absolute;
-  width: 0.8vw;
-  height: 0.2vw;
-  left: 20%;
-  bottom: -2px;
-  border: 2px solid var(--clr);
-  background: #272822;
-  transition: 0.2s;
-  
-  }
-  
-  .button3:hover i::after {
-  width: 0.8vw;
-  left: 80%;
-  animation: move 3s infinite;
-  }
-  .indicator{
-  top: 7vw;
-  }
-
-@keyframes move {
-0% {
-transform: translateX(0);
-}
-50% {
-transform: translateX(3px);
-}
-100% {
-transform: translateX(0);
-}
-}
-
-@keyframes box {
-0% {
-box-shadow: #27272c;
-}
-50% {
-box-shadow: 0 0 25px var(--clr);
-}
-100% {
-box-shadow: #27272c;
-}
-} 
-
-
-
-
-
-
-@media (max-width:650px){
   .form__label {
-   position: absolute;
-   top: 0px;
-   display: block;
-   transition: 0.2s;
-   font-size: 0.4rem;
-   color: #9b9b9b;
-   }
-   .form__field:focus {
-     ~ .form__label {
-     position: absolute;
-     top: 0;
-     display: block;
-     transition: 0.2s;
-     font-size: 1vw;
-     color: #FB2576;
-     font-weight:700;    
-     }
-     padding-bottom: 3px;  
-     font-weight: 700;
-     border-width: 2px;
-     border-image: linear-gradient(to right,#FB2576,#861657);
-     border-image-slice: 1;
-     }
-   .form__group {
-     position: relative;
-     padding: 3px 0 0;
-     margin-top:10vw; /*height from the top pink line */
-     margin-left:2vw ;
-     width: 70%;
-     }
-     
-     .form__field {
-     font-family: inherit;
-     width: 100%;
-     border: 0;
-     border-bottom: 2px solid #9b9b9b;
-     outline: 0;
-     font-size: 1.3vw;
-     color: #fff;
-     padding: 7px 0;
-     background: transparent;
-     transition: border-color 0.2s;
-     
-     &::placeholder {
-     color: transparent;
-     }
-   }
-     .button4{
-       position: relative;
-       top:4vw;
-       left:2vw;
-       width:15vw ;
-       height: 4vw;
-       background: #232323;
-       color: #fff;
-       font-weight: 600;
-       text-transform: uppercase;
-       border: 2px solid #33352d;
-       border-bottom:2.5px solid #FB2576;
-       letter-spacing: 0rem;
-       font-size: 0.25rem;
-       padding: 1vw 3vw; 
-       transition: 0.2s;
-     }
-     .indicator2{
-      top: 25px;
-     }
-
-     .about{
-       position: relative;
-       top:10px;
-       margin-right:7vw;  
-   }
-   .aboutinfo2{
-    margin-right: 2.5vw;
- 
-   }
-}
-
-
-@media (min-width:650px)and (max-width:850px)  {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #9b9b9b;
+  pointer-events: none; /* Disable pointer events on the label */
+  
+  }
+  
+  .form__field:focus {
+  ~ .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1vw;
+  color: #FB2576;
+  font-weight:700;    
+  }
+  padding-bottom: 6px;  
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right,#FB2576,hsl(325, 96%, 59%));
+  border-image-slice: 1;
+  }
+  /* reset input */ 
+  .form__field{
+  &:required,&:invalid { box-shadow:none; }
+  }
+  
   .button4{
-    position: relative;
-    top:4vw;
-    left:2vw;
-    width:15vw ;
-    height: 4vw;
-    background: #232323;
-    color: #fff;
-    font-weight: 600;
-    text-transform: uppercase;
-    border: 2px solid #33352d;
-    border-bottom:2.5px solid #FB2576;
-    letter-spacing: 0rem;
-    font-size: 0.4rem;
-    padding: 1vw 3vw; 
-    transition: 0.2s;
+  position: relative;
+  top:4vw;
+  left:2vw;
+  height: 4vw;
+  background: #232323;
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: 2px solid #33352d;
+  border-bottom:2.5px solid #FB2576;
+  letter-spacing: 0.1rem;
+  font-size: 0.4rem;
+  padding: 2vw 5vw; 
+  transition: 0.2s;
+  @media (max-width:500px) {
+    font-size:0.32rem;
+  }
   }
   .indicator2{
-    top: 60px;
-   }
-
-}
-
-
-@media (max-width: 850px) {
-  .animated-title{
-  height: 30vmin;
-  left: 70%;
-  position: absolute;
-  
-  transform: translate(-50%, -50%);
-  width: 51vw;
+    top: 8vw;
   }
   
-  .about{
-  top:9vw;
-  right:23vw;
-  }
-  .belowmm{
-  padding-top:10px;
-  padding-left: 0px;
-  }
-  .customheight{
-  Display:none;
-  }
-  .mainlogomedia{
-  width:100%;
-  text-align:center;
-  }
-  .mainlogo{
-  top:0%;
-  right: 0%;
-  }
-  .aboutinfo2{
-  font-size:xx-small;
-  top:4vw;
-  width:65vw ;
-  left:25vw;
-  }
-  .text-bottom{
-    font-size: x-small
-  }
-  .text-top{
-    font-size: x-small;
-  }
-  @keyframes typewriter{
-  from{width: 0;}
-  to{width: 65vw;}
-  }
+  .button3 {
   
-  @keyframes move {
-  0% {
-  transform: translateX(0);
-  }
+  position: relative;
+  top:1vw;
+  left:3vw;
+  height: 3vw;
+  background: #444;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+  letter-spacing: 0.1rem;
+  font-size: 0.4rem;
+  padding: 1vw 3vw;
+  transition: 0.2s;
   
   }
   
-  @keyframes box {
-  0% {
-  box-shadow: #27272c;
+  .button3:hover {
   
-  } 
-  } 
-  
-  }
-
-
-
-  @media (max-width:1250px) {
-    .button3{ 
-      display: none;
-      }
+    letter-spacing: 0.2rem;
+    padding: 1.1rem 2.7rem;
+    background: var(--clr);
+    color: var(--clr);
+    box-shadow: 0 0 3.5vw var(--clr);
+    animation: box 3s infinite;
+    }
     
-  }
-  @media (min-width:850px) and (max-width:1250px)  {
-    .button4{
-      font-size:0.45rem;
-      padding: 0vw 2.8vw; 
-      height: 3vw;
+    .button3::before {
+    content: "";
+    height: 3vw;
+    position: absolute;
+    inset: 2px;
+    background: #272822;
     }
-   
-  }
-  @media (min-width:1250px) {
-    .button4{
-    display: none;
+    
+    .button3 span {
+    position: relative;
+    z-index: 1;
+    font-size: 1vw;
+    @media(max-width: 850px){
+    font-size:1/3vw
     }
     }
-@media(min-width:1541px)and (max-width:2869px){
-  .about{
-    right:39.5vw
-  }
-  .mainlogo{
-    top: 200px;
-    right:390px;
+    .button3 i {
+    position: absolute;
+    inset: 0;
+    display: block;
+    height: 3vw;
+    width: 12vw;
     }
-    .belowmm{
-      font-size: 2.5vw;
-      padding-top:200px;
-      padding-left: 80px;
+    
+    .button3 i::before {
+    content: "";
+    position: absolute;
+    width: 0.8vw;
+    height: 0.2vw;
+    left: 80%;
+    top: -2px;
+    border: 2px solid var(--clr);
+    background: #272822;
+    transition: 0.2s;
+    }
+    
+    .button3:hover i::before {
+    width: 0.9vw;
+    left: 20%;
+    animation: move 3s infinite;
+    }
+    
+    .button3 i::after {
+    content: "";
+    position: absolute;
+    width: 0.8vw;
+    height: 0.2vw;
+    left: 20%;
+    bottom: -2px;
+    border: 2px solid var(--clr);
+    background: #272822;
+    transition: 0.2s;
+    
+    }
+    
+    .button3:hover i::after {
+    width: 0.8vw;
+    left: 80%;
+    animation: move 3s infinite;
+    }
+    .indicator{
+    top: 3vw;
+    }
+
+    @keyframes move {
+      0% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(3px);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes box {
+      0% {
+        box-shadow: #27272c;
+      }
+      50% {
+        box-shadow: 0 0 25px var(--clr);
+      }
+      100% {
+        box-shadow: #27272c;
+      }
+    }
+    
+    .dark-datepicker{
+      font-size: 1vw;
+      width: 19vw;
+      height: 3.5vw;
+      left: 10px;
+      top: 5vw;
+
+    }
+    .dark-datepicker .DatePicker {
+      background-color: #272822;
+      ;
+      color: #FB2576;
+    }
+    
+    div.dark-datepicker .DayPickerNavigation_button {
+      color: #272822;
+    }
+    
+    .dark-datepicker .DatePicker__input {
+      background-color: #272822;
+      color: #FB2576;
+    }
+    
+    .dark-datepicker .DatePicker__input input {
+      background-color: #272822;
+      color: #FB2576;
+    }
+    
+    .dark-datepicker .DateInput_input {
+      background-color: #272822;
+      color: #FB2576;
+    }
+    
+    .dark-datepicker .DayPicker {
+      background-color: #272822;
+    }
+    
+    .dark-datepicker .DayPicker__withBorder {
+      box-shadow: none;
+    }
+    
+    .dark-datepicker .CalendarMonth_caption {
+      color: black;
+    }
+    
+    .dark-datepicker .CalendarDay__selected,
+    .dark-datepicker .CalendarDay__selected:hover {
+      background-color: #272822;
+      color: #FB2576;
+    }
+    
+    .DateRangePickerInput {
+      background-color: #272822;
+    }
+    
+    .DateRangePickerInput_arrow_svg {
+      vertical-align: middle;
+      fill: #FB2576;
+      height: 24px;
+      width: 24px;
+    }
+    
+    .DateRangePickerInput__withBorder {
+      border-radius: 2px;
+      border: 1px solid #33352d;
+    }
+    
+    .Days {
+      top: 5vw;
+    }
+    
+    @media (max-width: 650px) {
+
+     .exclaimation{
+      margin-left: 1.4rem !important;
+     }
+      .form__label {
+        position: absolute;
+        top: 0px;
+        display: block;
+        transition: 0.2s;
+        font-size: 0.4rem;
+        color: #9b9b9b;
+      }
+      .form__field:focus {
+        ~ .form__label {
+          position: absolute;
+          top: 0;
+          display: block;
+          transition: 0.2s;
+          font-size: 1vw;
+          color: #FB2576;
+          font-weight: 700;
+        }
+        padding-bottom: 3px;
+        font-weight: 700;
+        border-width: 2px;
+        border-image: linear-gradient(to right, #FB2576, #861657);
+        border-image-slice: 1;
+      }
+      .form__group {
+        position: relative;
+        padding: 3px 0 0;
+        margin-top: 8vw;
+        /*height from the top pink line */
+        margin-left: 2vw;
+        width: 70%;
+      }
+      .form__field {
+        font-family: inherit;
+        width: 100%;
+        border: 0;
+        border-bottom: 2px solid #9b9b9b;
+        outline: 0;
+        font-size: 1.3vw;
+        color: #fff;
+        padding: 7px 0;
+        background: transparent;
+        transition: border-color 0.2s;
+        &::placeholder {
+          color: transparent;
+        }
+      }
+      .button4 {
+        position: relative;
+        top: 1vw;
+        left: 2vw;
+        width: 15vw;
+        height: 4vw;
+        background: #232323;
+        color: #fff;
+        font-weight: 600;
+        text-transform: uppercase;
+        border: 2px solid #33352d;
+        border-bottom: 2.5px solid #FB2576;
+        letter-spacing: 0rem;
+        font-size: 0.25rem;
+        padding: 1vw 3vw;
+        transition: 0.2s;
+      }
+      .indicator2 {
+        top: 10px;
+      }
+      .about {
+        position: relative;
+        top: 10px;
+        margin-right: 7vw;
+      }
+      .aboutinfo2 {
+        margin-right: 2.5vw;
+      }
+      .about {
+        position: relative;
+        top: 4vw;
+        right: 41vw;
+      }
       
-  }
+      .aboutinfo2 {
+        display: flex;
+        flex-direction: row;
+        text-align: left;
+        width: 70vw;
+        position: absolute;
+        top: 3.5vw;
+        left: 5vw;
+        color: #fff;
+        font-family: 'Red Hat Display', sans-serif;
+        font-weight: bold;
+      }
+      
+      
+      @keyframes showTopText {
+        0% {
+          transform: translate3d(0, 100%, 0);
+        }
+        40%,
+        60% {
+          transform: translate3d(0, 50%, 0);
+        }
+        100% {
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      
+      @keyframes showBottomText {
+        0% {
+          transform: translate3d(0, -100%, 0);
+        }
+        100% {
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      
+      .animated-title {
+        color: #fff;
+        font-weight: bolder;
+        font-family: Roboto, Arial, sans-serif;
+        height: 30vmin;
+        left: 70%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 51vw;
+      }
+      
+      .animated-title > div {
+        height: 50%;
+        overflow: hidden;
+        position: absolute;
+        width: 100%;
+      }
+      
+      .animated-title > div div {
+        font-size: 1.5vw;
+        padding: 0.5vw 0;
+        position: absolute;
+      }
+      
+      .animated-title > div div span {
+        display: block;
+      }
+      
+      .animated-title > div.text-top {
+        border-bottom: 0.6vmin solid #FB2576;
+        top: 0;
+      }
+      
+      .animated-title > div.text-top div {
+        animation: showTopText 1s;
+        animation-delay: 0.5s;
+        animation-fill-mode: forwards;
+        bottom: 0;
+        transform: translate(0, 100%);
+      }
+      
+      .animated-title > div.text-top div span:first-child {
+        color: #fff;
+      }
+      
+      .animated-title > div.text-bottom {
+        bottom: 0;
+      }
+      
+      .animated-title > div.text-bottom div {
+        animation: showBottomText 0.5s;
+        animation-delay: 1.75s;
+        animation-fill-mode: forwards;
+        top: 0;
+        transform: translate(0, -100%);
+      }
+      
+      .exclaimation {
+        color: #FB2576;
+        font-weight: bolder;
+        font-family: Roboto, Arial, sans-serif;
+      }
+      
+      
+      .DateRangePickerInput_arrow_svg {
+        vertical-align: middle;
+        fill: #FB2576;
+        height: 3vw;
+        width: 3vw;
+      }
+      
+      .DateRangePickerInput__withBorder {
+        border-radius: 2px;
+        border: 1px solid #33352d;
+      }
+      .DateInput{
+        width: 15vw;
+        height: 5vw;
+      }
+      .DateInput_input{
+        margin: 0%;
+      }
+      .DateInput_input_1{
+        font-size:2vw;
+        padding: 0;
+        width: 15vw;
+        height:5vw;
+      }
+      .Days{
+        top:3vw;
+      }
+    }
+    
+    @media (min-width: 650px) and (max-width: 850px) {
+      .button4 {
+        position: relative;
+        top: 4vw;
+        left: 2vw;
+        width: 15vw;
+        height: 4vw;
+        background: #232323;
+        color: #fff;
+        font-weight: 600;
+        text-transform: uppercase;
+        border: 2px solid #33352d;
+        border-bottom: 2.5px solid #FB2576;
+        letter-spacing: 0rem;
+        font-size: 0.4rem;
+        padding: 1vw 3vw;
+        transition: 0.2s;
+      }
+      .indicator2 {
+        top: 60px;
+      }
+    }
+    
+    @media (max-width: 850px) {
+      .animated-title {
+        height: 30vmin;
+        left: 70%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 51vw;
+      }
+      .about {
+        top: 9vw;
+        right: 23vw;
+      }
+      .belowmm {
+        padding-top: 10px;
+        padding-left: 0px;
+      }
+      .customheight {
+        Display: none;
+      }
+      .mainlogomedia {
+        width: 100%;
+        text-align: center;
+      }
+      .mainlogo {
+        top: 0%;
+        right: 0%;
+      }
+      .aboutinfo2 {
+        font-size: 1vw;
+        top: 4vw;
+        width: 65vw;
+        left: 25vw;
+      }
+      .text-bottom {
+        font-size: x-small;
+      }
+      .text-top {
+        font-size: x-small;
+      }
+      @keyframes typewriter {
+        from {
+          width: 0;
+        }
+        to {
+          width: 65vw;
+        }
+      }
+      @keyframes move {
+        0% {
+          transform: translateX(0);
+        }
+      }
+      @keyframes box {
+        0% {
+          box-shadow: #27272c;
+        }
+      }
+    }
+    
+    @media (max-width: 1250px) {
+      .button3 {
+        display: none;
+      }
+    }
+    @media (min-width: 851px) and (max-width: 1149px) {
+      .button4 {
+        position: relative;
+        top: 1.5vw;
+        left: 2.5vw;
+        width: 13vw;
+        height: 3.4vw;
+        background: #232323;
+        color: #fff;
+        font-weight: 600;
+        text-transform: uppercase;
+        border: 2px solid #33352d;
+        border-bottom: 2.5px solid #FB2576;
+        letter-spacing: 0rem;
+        font-size: 0.7rem;
+        padding: 1.5vw 3vw;
+        transition: 0.2s;
+      }
+      .indicator2 {
+        top: 50px;
+      }
+      .Days{
+        top:8vw;
+      }
+
+    }
+
+    @media (min-width: 1150px) and (max-width: 1250px) {
+
+      .button4 {
+        position: relative;
+        top: 1.5vw;
+        left: 2.5vw;
+        width: 13vw;
+        height: 3vw;
+        background: #232323;
+        color: #fff;
+        font-weight: 600;
+        text-transform: uppercase;
+        border: 2px solid #33352d;
+        border-bottom: 2.5px solid #FB2576;
+        letter-spacing: 0rem;
+        font-size: 0.8rem;
+        padding: 1vw 3vw;
+        transition: 0.2s;
+      }
+      .indicator2 {
+        top: 50px;
+      }
+      .Days{
+        top:7.5vw;
+      }
+    }
+
+    @media (min-width: 1250px) {
+      .button4 {
+        display: none;
+      }
+    }
+    @media (min-width: 1250px) and (max-width: 1513px) {
+      .Days{
+        top:8vw;
+      }
+    }
+    @media (max-width:1513px) {
+      .dark-datepicker{
+        font-size: 1vw;
+        width: 13vw;
+        height: 3.5vw;
+        left: 2.8vw;
+        top: 7vw;
+
+      }
+    }
+
+    @media (min-width: 1541px) and (max-width: 2869px) {
+      .about {
+        right: 39.5vw;
+      }
+      .mainlogo {
+        top: 200px;
+        right: 390px;
+      }
+      .belowmm {
+        font-size: 2.5vw;
+        padding-top: 200px;
+        padding-left: 80px;
+        background-color: #929292;
+      }
+      
+      .dark-datepicker{
+        font-size: 1vw;
+        width: 21vw;
+        height: 4vw;
+        left: 1.5vw;
+        top: 5vw;
   
-}
-
-
-
- 
-
-  
+      }
+      
+      .DateRangePickerInput_arrow_svg {
+        vertical-align: middle;
+        fill: #FB2576;
+        height: 3vw;
+        width: 2.8vw;
+      }
+      
+      .DateRangePickerInput__withBorder {
+        border-radius: 2px;
+        border: 1px solid #33352d;
+      }
+      .DateInput{
+        width: 8vw;
+      }
+      .DateInput_input_1{
+        font-size:30px;
+      }
+    } 

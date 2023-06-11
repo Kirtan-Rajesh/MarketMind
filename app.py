@@ -1,6 +1,13 @@
-import dash_html_components as html
+from dash import html
 from dash import Dash, dcc, html
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
+from datetime import datetime as dt
+import yfinance as yf
+from dash.exceptions import PreventUpdate
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objs as go 
+
 app = Dash(__name__,)
 
 app.layout = html.Div(
@@ -23,7 +30,7 @@ app.layout = html.Div(
             rel="stylesheet",
         ),
         html.Div(
-            className="flex",
+            className="flex sidepanel",
             children=[
                 html.Div(
                     className="h-screen w-1/3 backdrop-blur-10 bg-gradient-to-br from-black to-gray-800 rounded-lg shadow-md border border-gray-500",
@@ -43,36 +50,76 @@ app.layout = html.Div(
                                     className="form__field",
                                     placeholder="Stock Code",
                                     name="name",
-                                    id="StockCode"
+                                    id="StockCode",
+                                    autoComplete='off'
                                 ),
                                 html.Label("Enter Stock Code", className="form__label"),
                             ],
                         ),
-                        html.Button("Stock Price", className="button4"),
+                        html.Br(),
+                        
+                        html.Button("Stock Price", className="button4",id="StockPrice2"),
 
-                        html.Button("Indicators", className="button4 indicator2"),
+                        html.Button("Indicators", className="button4 indicator2",id="Indicator2"),
 
                         html.Button(
                                 children=[
                                 html.Span("Stock Price"),
                                 html.I()
                         ],
-                            className="button3",
+                            className="button3",id="StockPrice",
                             style={"--clr": "#FB2576"},
                         ),
                         
                         html.Button(
                                 children=[
-                                html.Span("Indicators"),
+                                html.Span("Indicators "),
                                 html.I()
                         ],
-                            className="indicator button3",
+                            className="indicator button3",id="Indicator",
                             style={"--clr": "#FB2576"},
-                    )
+                    ),
+                    dcc.DatePickerRange(
+                            start_date_placeholder_text="Start Period",
+                            end_date_placeholder_text="End Period",
+                            calendar_orientation='horizontal',
+                            className="dark-datepicker",
+                        ),
+                        html.Div(
+                            className="form__group field  Days",
+                            children=[
+                                dcc.Input(
+                                    type="text",
+                                    className="form__field  ",
+                                    placeholder="Days",
+                                    name="Days",
+                                    id="Days",
+                                    autoComplete='off'
+                                ),
+                                html.Label("Enter Number of Days", className="form__label"),
+                            ],
+                        )
                     ],
+
                 ),
+
                 html.Div(
-                    className="flex",
+                [
+                html.Div(
+                    [  # header
+                        html.Img(id="stocklogo"),
+                        html.P(id="ticker")
+                    ],
+                    className="header"),
+                html.Div(id="description", className="decription_ticker"),
+                html.Div([], id="graphs-content"),
+                html.Div([], id="main-content"),
+                html.Div([], id="forecast-content")
+                ],
+                className="content"),
+
+                html.Div(
+                    className="flex homepage",
                     children=[
                         html.Div(
                             children=[
@@ -113,7 +160,7 @@ app.layout = html.Div(
                                                         html.Div(
                                                             children=[
                                                                 html.Div("Website"),
-                                                                html.Span("!", className="exclaimation",style={"margin-left": "6vw"}),
+                                                                html.Span("!", className="exclaimation",style={"margin-left": "5.6rem"}),
                                                             ],
                                                         ),
                                                     ],
@@ -121,7 +168,7 @@ app.layout = html.Div(
                                             ],
                                         ),
                                         html.Div(
-                                            className="aboutinfo2",
+                                            className="aboutinfo2 ",
                                             children=[
                                                 html.P(
                                                     "Welcome to MarketMind, a cutting-edge single-page web application powered by Dash, a Python framework, and advanced machine learning models. "
@@ -137,11 +184,40 @@ app.layout = html.Div(
                             ],
                         ),
                     ],
-                ),
+                ),#homepage ends
+                
             ],
         ),
     ],
 )
+
+
+@app.callback(
+    [
+        Output("description", "children"),
+        # Output("stocklogo", "src"),
+        Output("ticker", "children")
+    ],
+    [Input('StockCode', 'n_submit')],
+    [State('StockCode', 'value')]
+)
+def update_data(n, val):
+    if n:
+        if val is None:
+            raise PreventUpdate
+        else:
+            ticker = yf.Ticker(val)
+            inf = ticker.info
+            df = pd.DataFrame().from_dict(inf, orient="index").T
+            print("hello")
+            return (
+                    df['longBusinessSummary'].values[0],
+                    # df['logo_url'].values[0],
+                    df['shortName'].values[0]
+                )
+    else:
+        raise PreventUpdate
+
 
 if __name__ == "__main__":
     app.run_server(debug=True)
