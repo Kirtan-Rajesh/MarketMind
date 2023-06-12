@@ -119,7 +119,7 @@ app.layout = html.Div(
                 className="content"),
 
                 html.Div(
-                    className="flex homepage",
+                    className="flex ",id="homepage",
                     children=[
                         html.Div(
                             children=[
@@ -190,13 +190,28 @@ app.layout = html.Div(
         ),
     ],
 )
+# @app.callback(
+#         Output("homepage","style"),
+#         [Input('StockCode', 'n_submit')],
+#         [State('StockCode', 'value')]
+# )
+# def hide_div(n,val):
 
+
+    
+#     if checked == 'True':
+#         return {'display': 'none'}
+#     else:
+#         return {'display': 'block'}
 
 @app.callback(
     [
         Output("description", "children"),
         # Output("stocklogo", "src"),
-        Output("ticker", "children")
+        Output("ticker", "children"),
+        Output("homepage","style")
+        
+        
     ],
     [Input('StockCode', 'n_submit')],
     [State('StockCode', 'value')]
@@ -213,7 +228,8 @@ def update_data(n, val):
             return (
                     df['longBusinessSummary'].values[0],
                     # df['logo_url'].values[0],
-                    df['shortName'].values[0]
+                    df['shortName'].values[0],
+                    {'display': 'none'}
                 )
     else:
         raise PreventUpdate
