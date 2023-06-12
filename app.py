@@ -1,12 +1,13 @@
 from dash import html
 from dash import Dash, dcc, html
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output, State, MATCH, ALL
 from datetime import datetime as dt
 import yfinance as yf
 from dash.exceptions import PreventUpdate
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objs as go 
+import requests
 
 app = Dash(__name__,)
 
@@ -33,7 +34,7 @@ app.layout = html.Div(
             className="flex sidepanel",
             children=[
                 html.Div(
-                    className="h-screen w-1/3 backdrop-blur-10 bg-gradient-to-br from-black to-gray-800 rounded-lg shadow-md border border-gray-500",
+                    className="h-screen  w-1/3 backdrop-blur-10 bg-gradient-to-br from-black to-gray-800 rounded-lg shadow-md border border-gray-500",
                     children=[
                         html.Div(
                             className="lightlowerborder h-24 text-center border-b-4 flex items-center justify-center",
@@ -108,7 +109,7 @@ app.layout = html.Div(
                 html.Div(
                     [  # header
                         html.Img(id="stocklogo"),
-                        html.P(id="ticker")
+                        html.P(id="ticker", className="tickername")
                     ],
                     className="header"),
                 html.Div(id="description", className="decription_ticker"),
@@ -116,7 +117,7 @@ app.layout = html.Div(
                 html.Div([], id="main-content"),
                 html.Div([], id="forecast-content")
                 ],
-                className="content"),
+                className="content flex"),
 
                 html.Div(
                     className="flex ",id="homepage",
@@ -190,28 +191,44 @@ app.layout = html.Div(
         ),
     ],
 )
-# @app.callback(
-#         Output("homepage","style"),
-#         [Input('StockCode', 'n_submit')],
-#         [State('StockCode', 'value')]
-# )
-# def hide_div(n,val):
 
 
-    
-#     if checked == 'True':
-#         return {'display': 'none'}
-#     else:
-#         return {'display': 'block'}
+base_url = "https://api.benzinga.com/api/v1.1"
+token = "be44938a8acf44a88803ce68825f0687" 
+
+@app.callback(
+    Output("stocklogo", "src"),
+    [Input('StockCode', 'n_submit')],
+    [State('StockCode', 'value')]
+)
+def update_data(n, val):
+    if n:
+        if val is None:
+            raise PreventUpdate
+        else:
+            logo_url, _ = get_logo_url(val)  # Ignore the symbol by using "_"
+            return logo_url
+    else:
+        raise PreventUpdate
+
+def get_logo_url(stock_code):
+    url = f"{base_url}/logos"
+    headers = {"Accept": "application/json"}
+    params = {"symbols": stock_code, "token": token}
+
+    response = requests.get(url, headers=headers, params=params)
+    if response.status_code == 200:
+        logos = response.json()
+        if len(logos) > 0:
+            logo_url = logos[0]["files"]["original"]
+            return logo_url
+    return None
 
 @app.callback(
     [
         Output("description", "children"),
-        # Output("stocklogo", "src"),
         Output("ticker", "children"),
-        Output("homepage","style")
-        
-        
+        Output("homepage", "style")
     ],
     [Input('StockCode', 'n_submit')],
     [State('StockCode', 'value')]
@@ -224,15 +241,17 @@ def update_data(n, val):
             ticker = yf.Ticker(val)
             inf = ticker.info
             df = pd.DataFrame().from_dict(inf, orient="index").T
-            print("hello")
+
+            logo_url = get_logo_url(val)
+
             return (
-                    df['longBusinessSummary'].values[0],
-                    # df['logo_url'].values[0],
-                    df['shortName'].values[0],
-                    {'display': 'none'}
-                )
+                df['longBusinessSummary'].values[0],
+                df['shortName'].values[0],
+                {'display': 'none'}
+            )
     else:
         raise PreventUpdate
+
 
 
 if __name__ == "__main__":

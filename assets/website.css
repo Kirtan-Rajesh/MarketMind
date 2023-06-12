@@ -2,13 +2,23 @@
   background-image: linear-gradient(to right, black, #191919);
 }
 
-.content {
-  position: absolute;
-  top: 15%;
-  left: 20%;
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.header p {
+  font-size: 4rem;
+  margin-left: 3rem;
+  line-height: 80%;
 }
 
-
+#stocklogo {
+  max-width: 15rem;
+  height: auto;
+}
 .lightlowerborder {
   border-bottom: 5px solid transparent;
   border-color: #fb2576;
@@ -30,8 +40,8 @@
 
 .mainlogo {
   position: relative;
-  top: 110px;
-  right: 130px;
+  top: 120px;
+  right: 135px;
   font-size: 8vw;
   line-height: 8vw;
   margin: 0;
@@ -70,7 +80,7 @@
 
 .customheight {
   font-size: 2.5vw;
-  padding-left: 20px;
+  padding-left: 1px;
 }
 
 .belowmm {
@@ -81,19 +91,19 @@
 
 .about {
   position: relative;
-  top: 4vw;
-  right: 41vw;
+  top: 3vw;
+  right: 42vw;
 }
 
 .aboutinfo2 {
   display: flex;
   flex-direction: row;
-  font-size: 1vw;
+  font-size: 1.2vw;
   text-align: left;
   width: 70vw;
   position: absolute;
   top: 3.5vw;
-  left: 5vw;
+  left: 4.6vw;
   color: #fff;
   font-family: 'Red Hat Display', sans-serif;
   font-weight: bold;
@@ -420,7 +430,7 @@ to{border-right-color: transparent;}
       font-size: 1vw;
       width: 19vw;
       height: 3.5vw;
-      left: 10px;
+      left: 3px;
       top: 5vw;
 
     }
@@ -487,6 +497,57 @@ to{border-right-color: transparent;}
       top: 5vw;
     }
     
+  .content{
+    display: flex;
+    flex-direction: column;
+    color: #abdbed;
+  
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @media (max-width: 650px) {
 
      .exclaimation{
