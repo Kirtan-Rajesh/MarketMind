@@ -12,7 +12,7 @@ import requests
 app = Dash(__name__,)
 
 app.layout = html.Div(
-    className="body",
+    className="body  ",
     children=[
         html.Link(
             href="https://fonts.googleapis.com/css?family=Red+Hat+Display:900&display=swap",
@@ -31,10 +31,10 @@ app.layout = html.Div(
             rel="stylesheet",
         ),
         html.Div(
-            className="flex sidepanel",
+            className="flex",
             children=[
                 html.Div(
-                    className="h-screen fixed  w-1/3 backdrop-blur-10 bg-gradient-to-br from-black to-gray-800 rounded-lg shadow-md border border-gray-500",
+                    className="h-screen  sidepanel  backdrop-blur-10 bg-gradient-to-br from-black to-gray-800 shadow-md border border-gray-500",
                     children=[
                         html.Div(
                             className="lightlowerborder h-24 text-center border-b-4 flex items-center justify-center",
