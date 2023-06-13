@@ -34,7 +34,7 @@ app.layout = html.Div(
             className="flex sidepanel",
             children=[
                 html.Div(
-                    className="h-screen  w-1/3 backdrop-blur-10 bg-gradient-to-br from-black to-gray-800 rounded-lg shadow-md border border-gray-500",
+                    className="h-screen fixed  w-1/3 backdrop-blur-10 bg-gradient-to-br from-black to-gray-800 rounded-lg shadow-md border border-gray-500",
                     children=[
                         html.Div(
                             className="lightlowerborder h-24 text-center border-b-4 flex items-center justify-center",
@@ -80,11 +80,15 @@ app.layout = html.Div(
                             className="indicator button3",id="Indicator",
                             style={"--clr": "#FB2576"},
                     ),
-                    dcc.DatePickerRange(
+                    dcc.DatePickerRange(id='my-date-picker-range',
                             start_date_placeholder_text="Start Period",
                             end_date_placeholder_text="End Period",
                             calendar_orientation='horizontal',
                             className="dark-datepicker",
+                            min_date_allowed=dt(1995, 8, 5),
+                            max_date_allowed=dt.now(),
+                            initial_visible_month=dt.now(),
+                            end_date=dt.now().date()
                         ),
                         html.Div(
                             className="form__group field  Days",
@@ -253,6 +257,85 @@ def update_data(n, val):
         raise PreventUpdate
 
 
+# callback for stocks graphs
+@app.callback([
+    Output("graphs-content", "children"),
+], [
+    Input("StockPrice", "n_clicks"),
+    Input('my-date-picker-range', 'start_date'),
+    Input('my-date-picker-range', 'end_date')
+], [State("StockCode", "value")])
+def stock_price(n, start_date, end_date, val):
+    if n == None:
+        return [""]
+        #raise PreventUpdate
+    if val == None:
+        raise PreventUpdate
+    else:
+        if start_date != None:
+            df = yf.download(val, str(start_date), str(end_date))
+        else:
+            df = yf.download(val)
+
+    df.reset_index(inplace=True)
+    fig = get_stock_price_fig(df)
+    return [dcc.Graph(figure=fig)]
+
+def get_stock_price_fig(df):
+
+    fig = px.line(df,
+                  x="Date",
+                  y=["Close", "Open"],
+                  title="Closing and Openning Price vs Date")
+
+    return fig
+
+# callback for indicators
+@app.callback([Output("main-content", "children")], [
+    Input("Indicator", "n_clicks"),
+    Input('my-date-picker-range', 'start_date'),
+    Input('my-date-picker-range', 'end_date')
+], [State("StockCode", "value")])
+def indicators(n, start_date, end_date, val):
+    if n == None:
+        return [""]
+    if val == None:
+        return [""]
+
+    if start_date == None:
+        df_more = yf.download(val)
+    else:
+        df_more = yf.download(val, str(start_date), str(end_date))
+
+    df_more.reset_index(inplace=True)
+    fig = get_more(df_more)
+    return [dcc.Graph(figure=fig)]
+
+
+# callback for forecast
+# @app.callback([Output("forecast-content", "children")],
+#               [Input("forecast", "n_clicks")],
+#               [State("n_days", "value"),
+#                State("dropdown_tickers", "value")])
+# def forecast(n, n_days, val):
+#     if n == None:
+#         return [""]
+#     if val == None:
+#         raise PreventUpdate
+#     fig = prediction(val, int(n_days) + 1)
+#     return [dcc.Graph(figure=fig)]
+
+
+
+
+def get_more(df):
+    df['EWA_20'] = df['Close'].ewm(span=20, adjust=False).mean()
+    fig = px.scatter(df,
+                     x="Date",
+                     y="EWA_20",
+                     title="Exponential Moving Average vs Date")
+    fig.update_traces(mode='lines+markers')
+    return fig
 
 if __name__ == "__main__":
     app.run_server(debug=True)
