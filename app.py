@@ -112,11 +112,11 @@ app.layout = html.Div(
                 [
                 html.Div(
                     [  # header
-                        html.Img(id="stocklogo"),
+                        html.Img(id="stocklogo", className="headerimg"),
                         html.P(id="ticker", className="tickername")
                     ],
                     className="header"),
-                html.Div(id="description", className="decription_ticker"),
+                html.Div(id="description", className="description"),
                 html.Div([], id="graphs-content"),
                 html.Div([], id="main-content"),
                 html.Div([], id="forecast-content")
@@ -196,48 +196,24 @@ app.layout = html.Div(
     ],
 )
 
-
-base_url = "https://api.benzinga.com/api/v1.1"
-token = "be44938a8acf44a88803ce68825f0687" 
-
-@app.callback(
-    Output("stocklogo", "src"),
-    [Input('StockCode', 'n_submit')],
-    [State('StockCode', 'value')]
-)
-def update_data(n, val):
-    if n:
-        if val is None:
-            raise PreventUpdate
-        else:
-            logo_url, _ = get_logo_url(val)  # Ignore the symbol by using "_"
-            return logo_url
-    else:
-        raise PreventUpdate
-
-def get_logo_url(stock_code):
-    url = f"{base_url}/logos"
-    headers = {"Accept": "application/json"}
-    params = {"symbols": stock_code, "token": token}
-
-    response = requests.get(url, headers=headers, params=params)
-    if response.status_code == 200:
-        logos = response.json()
-        if len(logos) > 0:
-            logo_url = logos[0]["files"]["original"]
-            return logo_url
-    return None
+# Store the current stock code
+current_stock_code = None
 
 @app.callback(
     [
         Output("description", "children"),
         Output("ticker", "children"),
-        Output("homepage", "style")
+        Output("homepage", "style"),
+        Output("stocklogo", "src"),
+        Output("graphs-content", "children"),
+        Output("main-content", "children")
     ],
     [Input('StockCode', 'n_submit')],
     [State('StockCode', 'value')]
 )
 def update_data(n, val):
+    allow_duplicate=True
+    global current_stock_code  # Declare current_stock_code as a global variable
     if n:
         if val is None:
             raise PreventUpdate
@@ -245,13 +221,21 @@ def update_data(n, val):
             ticker = yf.Ticker(val)
             inf = ticker.info
             df = pd.DataFrame().from_dict(inf, orient="index").T
+            
 
-            logo_url = get_logo_url(val)
 
+            logo_url = "https://logo.clearbit.com/" + '.'.join(ticker.info['website'].split('.')[1:])
+            if current_stock_code != val:
+                return (df['longBusinessSummary'].values[0],
+                df['shortName'].values[0],
+                {'display': 'none'},
+                logo_url,None,None)
+            current_stock_code = val  # Update the global variable with the new value
             return (
                 df['longBusinessSummary'].values[0],
                 df['shortName'].values[0],
-                {'display': 'none'}
+                {'display': 'none'},
+                logo_url,None,None
             )
     else:
         raise PreventUpdate
@@ -259,16 +243,20 @@ def update_data(n, val):
 
 # callback for stocks graphs
 @app.callback([
-    Output("graphs-content", "children"),
+    Output("graphs-content", "children",allow_duplicate=True),
 ], [
     Input("StockPrice", "n_clicks"),
     Input('my-date-picker-range', 'start_date'),
     Input('my-date-picker-range', 'end_date')
-], [State("StockCode", "value")])
+], [State("StockCode", "value")],
+prevent_initial_call=True
+)
+
 def stock_price(n, start_date, end_date, val):
+
     if n == None:
         return [""]
-        #raise PreventUpdate
+
     if val == None:
         raise PreventUpdate
     else:
@@ -282,20 +270,19 @@ def stock_price(n, start_date, end_date, val):
     return [dcc.Graph(figure=fig)]
 
 def get_stock_price_fig(df):
-
     fig = px.line(df,
                   x="Date",
                   y=["Close", "Open"],
-                  title="Closing and Openning Price vs Date")
-
+                  title="Closing and Opening Price vs Date")
     return fig
 
+
 # callback for indicators
-@app.callback([Output("main-content", "children")], [
+@app.callback([Output("main-content", "children",allow_duplicate=True)], [
     Input("Indicator", "n_clicks"),
     Input('my-date-picker-range', 'start_date'),
     Input('my-date-picker-range', 'end_date')
-], [State("StockCode", "value")])
+], [State("StockCode", "value")],prevent_initial_call=True)
 def indicators(n, start_date, end_date, val):
     if n == None:
         return [""]

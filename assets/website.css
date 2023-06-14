@@ -440,7 +440,7 @@ to{border-right-color: transparent;}
       font-size: 1vw;
       width: 19vw;
       height: 3.5vw;
-      left: 3px;
+      left: 10px;
       top: 5vw;
 
     }
@@ -513,10 +513,28 @@ to{border-right-color: transparent;}
     color: #abdbed;
   
   }
+  .tickername{
+    margin-left: 20px !important;
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
 
+    
+  }
+  .headerimg{
+    border-radius:50%;
+    width: 6%;
+    height: 20px;
+    margin-left: 2vw;
+    margin-top: 1vw;
+    background-size:75% ;
+  }
 
-
-
+  .description{
+    font-family: Montserrat, sans-serif;
+    margin-left: 2vw;
+    font-size: 1.2vw;
+    width: 90%;
+  }
 
 
 
