@@ -91,19 +91,17 @@ app.layout = html.Div(
                             end_date=dt.now().date()
                         ),
                         html.Div(
-                            className="form__group field  Days",
-                            children=[
-                                dcc.Input(
-                                    type="text",
-                                    className="form__field  ",
-                                    placeholder="Days",
-                                    name="Days",
-                                    id="Days",
-                                    autoComplete='off'
-                                ),
-                                html.Label("Enter Number of Days", className="form__label"),
-                            ],
-                        )
+                            html.Button(
+                                children=[
+                                html.Span("Forecast"),
+                                html.I()
+                        ],
+                            className="button3 forecast",id="Forecast",
+                            style={"--clr": "#00FF00"},
+                        ),
+                        ),
+                        html.Button("Forecast", className=" button4 forecast2",id="forecast2"),
+
                     ],
 
                 ),
@@ -117,9 +115,12 @@ app.layout = html.Div(
                     ],
                     className="header"),
                 html.Div(id="description", className="description"),
-                html.Div([], id="graphs-content"),
-                html.Div([], id="main-content"),
-                html.Div([], id="forecast-content")
+                html.Br(),
+                html.Div(id="forecast-content",className="forecastlayout"),
+                html.Br(),
+                html.Div([], id="graphs-content",className="graphs"),
+                html.Br(),
+                html.Div([], id="main-content",className="graphs")
                 ],
                 className="content flex"),
 
@@ -198,7 +199,7 @@ app.layout = html.Div(
 
 # Store the current stock code
 current_stock_code = None
-
+df_more=pd.DataFrame()
 @app.callback(
     [
         Output("description", "children"),
@@ -206,14 +207,18 @@ current_stock_code = None
         Output("homepage", "style"),
         Output("stocklogo", "src"),
         Output("graphs-content", "children"),
-        Output("main-content", "children")
+        Output("main-content", "children"),
+        Output("forecast-content", "children")
     ],
     [Input('StockCode', 'n_submit')],
     [State('StockCode', 'value')]
 )
+
+
 def update_data(n, val):
     allow_duplicate=True
     global current_stock_code  # Declare current_stock_code as a global variable
+    global DF
     if n:
         if val is None:
             raise PreventUpdate
@@ -229,13 +234,13 @@ def update_data(n, val):
                 return (df['longBusinessSummary'].values[0],
                 df['shortName'].values[0],
                 {'display': 'none'},
-                logo_url,None,None)
+                logo_url,None,None,None)
             current_stock_code = val  # Update the global variable with the new value
             return (
                 df['longBusinessSummary'].values[0],
                 df['shortName'].values[0],
                 {'display': 'none'},
-                logo_url,None,None
+                logo_url,None,None,None
             )
     else:
         raise PreventUpdate
@@ -244,6 +249,7 @@ def update_data(n, val):
 # callback for stocks graphs
 @app.callback([
     Output("graphs-content", "children",allow_duplicate=True),
+    Output("graphs-content","style",allow_duplicate=True)
 ], [
     Input("StockPrice", "n_clicks"),
     Input('my-date-picker-range', 'start_date'),
@@ -267,7 +273,7 @@ def stock_price(n, start_date, end_date, val):
 
     df.reset_index(inplace=True)
     fig = get_stock_price_fig(df)
-    return [dcc.Graph(figure=fig)]
+    return [dcc.Graph(figure=fig)],{ 'width':"70vw", 'margin-left': "2vw"}
 
 def get_stock_price_fig(df):
     fig = px.line(df,
@@ -278,7 +284,7 @@ def get_stock_price_fig(df):
 
 
 # callback for indicators
-@app.callback([Output("main-content", "children",allow_duplicate=True)], [
+@app.callback([Output("main-content", "children",allow_duplicate=True),Output("main-content", "style",allow_duplicate=True)], [
     Input("Indicator", "n_clicks"),
     Input('my-date-picker-range', 'start_date'),
     Input('my-date-picker-range', 'end_date')
@@ -296,22 +302,66 @@ def indicators(n, start_date, end_date, val):
 
     df_more.reset_index(inplace=True)
     fig = get_more(df_more)
+    return [dcc.Graph(figure=fig)],{ 'width':'70vw', 'margin-left': '2vw'}
+
+
+@app.callback([
+    Output("graphs-content", "children",allow_duplicate=True),
+], [
+    Input("StockPrice2", "n_clicks"),
+    Input('my-date-picker-range', 'start_date'),
+    Input('my-date-picker-range', 'end_date')
+], [State("StockCode", "value")],
+prevent_initial_call=True
+)
+
+def stock_price(n, start_date, end_date, val):
+
+    if n == None:
+        return [""]
+
+    if val == None:
+        raise PreventUpdate
+    else:
+        if start_date != None:
+            df = yf.download(val, str(start_date), str(end_date))
+        else:
+            df = yf.download(val)
+
+    df.reset_index(inplace=True)
+
+    fig = get_stock_price_fig(df)
     return [dcc.Graph(figure=fig)]
 
+def get_stock_price_fig(df):
+    fig = px.line(df,
+                  x="Date",
+                  y=["Close", "Open"],
+                  title="Closing and Opening Price vs Date")
+    return fig
 
-# callback for forecast
-# @app.callback([Output("forecast-content", "children")],
-#               [Input("forecast", "n_clicks")],
-#               [State("n_days", "value"),
-#                State("dropdown_tickers", "value")])
-# def forecast(n, n_days, val):
-#     if n == None:
-#         return [""]
-#     if val == None:
-#         raise PreventUpdate
-#     fig = prediction(val, int(n_days) + 1)
-#     return [dcc.Graph(figure=fig)]
 
+# callback for indicator2
+@app.callback([Output("main-content", "children",allow_duplicate=True)], [
+    Input("Indicator2", "n_clicks"),
+    Input('my-date-picker-range', 'start_date'),
+    Input('my-date-picker-range', 'end_date')
+], [State("StockCode", "value")],prevent_initial_call=True)
+def indicators(n, start_date, end_date, val):
+    global df_more
+    if n == None:
+        return [""]
+    if val == None:
+        return [""]
+
+    if start_date == None:
+        df_more = yf.download(val)
+    else:
+        df_more = yf.download(val, str(start_date), str(end_date))
+
+    df_more.reset_index(inplace=True)
+    fig = get_more(df_more)
+    return [dcc.Graph(figure=fig)]
 
 
 
@@ -323,6 +373,49 @@ def get_more(df):
                      title="Exponential Moving Average vs Date")
     fig.update_traces(mode='lines+markers')
     return fig
+
+import joblib
+from keras.models import load_model
+scaler = joblib.load('scaler.gz')
+regressor = load_model("model")
+import numpy as np
+
+@app.callback([
+    Output("forecast-content", "children" ,allow_duplicate=True),
+], [
+    Input("Forecast", "n_clicks"),
+], [State("StockCode", "value")],
+prevent_initial_call=True
+)
+def predictionval(n,val):
+    if n == None or val == None:
+        return [""]
+    else:
+        df_more = yf.download(val,period="max")
+        forecast_value=get_prediction(df_more)
+    return [forecast_value]
+
+
+
+
+def get_prediction(df):
+    #ticker= yf.Ticker(val)
+    #df = ticker.history(period="max")
+    high_prices = df.loc[:,'High'].to_numpy()
+    low_prices = df.loc[:,'Low'].to_numpy()
+    data = (high_prices+low_prices)/2.0
+    data = data.reshape(-1,1)
+    data = scaler.transform(data).reshape(-1)
+    X = []
+    y = []
+    for i in range(60, len(data)-60):
+        X.append(data[i-60:i])
+        y.append(data[i])
+    X, y = np.array(X), np.array(y)
+    predicted_stock_price = regressor.predict(X)
+    predicted_stock_price = scaler.inverse_transform(predicted_stock_price)
+    output = f"The predicted value of the stock tomorrow: ${predicted_stock_price[-1, 0]}"
+    return output
 
 if __name__ == "__main__":
     app.run_server(debug=True)

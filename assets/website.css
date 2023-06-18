@@ -102,7 +102,7 @@
 .about {
   position: relative;
   top: 3vw;
-  right: 42vw;
+  right: 41.5vw;
 }
 
 .aboutinfo2 {
@@ -301,7 +301,7 @@ to{border-right-color: transparent;}
   position: relative;
   top:4vw;
   left:2vw;
-  height: 4vw;
+  height: 40vw;
   background: #232323;
   color: #fff;
   font-weight: 600;
@@ -310,7 +310,7 @@ to{border-right-color: transparent;}
   border-bottom:2.5px solid #FB2576;
   letter-spacing: 0.1rem;
   font-size: 0.4rem;
-  padding: 2vw 5vw; 
+  padding: 2vw 4vw; 
   transition: 0.2s;
   @media (max-width:500px) {
     font-size:0.32rem;
@@ -503,8 +503,9 @@ to{border-right-color: transparent;}
       border: 1px solid #33352d;
     }
     
-    .Days {
-      top: 5vw;
+    .forecast {
+      top: 10vw;
+      z-index: -20;
     }
     
   .content{
@@ -517,11 +518,12 @@ to{border-right-color: transparent;}
     margin-left: 20px !important;
     font-family: Arial, sans-serif;
     margin-top: 20px;
+    font-size: 6vw !important;
 
     
   }
   .headerimg{
-    border-radius:50%;
+    border-radius:0%;
     width: 6%;
     height: 20px;
     margin-left: 2vw;
@@ -533,9 +535,20 @@ to{border-right-color: transparent;}
     font-family: Montserrat, sans-serif;
     margin-left: 2vw;
     font-size: 1.2vw;
-    width: 90%;
   }
+   
+  .forecast2{
+    top: 15vw !important;
+    border-bottom: 2.5px solid #00FF00 !important;
+  }
+  .forecastlayout{
+    margin-left: 2vw;
+    font-weight: bold;
+    font-size: 1.5vw;
 
+  }
+  
+   
 
 
 
@@ -877,6 +890,9 @@ to{border-right-color: transparent;}
       .button3 {
         display: none;
       }
+      .forecast {
+        display: none;
+      }
     }
     @media (min-width: 851px) and (max-width: 1149px) {
       .button4 {
@@ -936,6 +952,10 @@ to{border-right-color: transparent;}
       .button4 {
         display: none;
       }
+      .forecast2{
+        display: none;
+      }
+      
     }
     @media (min-width: 1250px) and (max-width: 1513px) {
       .Days{
