@@ -68,9 +68,6 @@ End Date: 2023-01-01
 
 Output: Real-time stock prices along with predicted stock price for the next trading day.
 
-## Screenshots
-
-_Add screenshots of the app interface here._
 
 ## License
 
