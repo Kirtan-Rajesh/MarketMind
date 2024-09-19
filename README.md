@@ -1,4 +1,5 @@
 # MarketMind
+![marketmind](https://github.com/user-attachments/assets/f9043edf-f7ad-40e2-a2cd-85aee8bb944b)
 
 MarketMind is a single-page web application designed to provide interactive stock market insights and predictions using Long Short-Term Memory (LSTM) models and real-time data visualizations. The app leverages Python's Dash framework to create dynamic web interfaces, enabling users to explore stock information, visualize trends, and forecast stock prices.
 
